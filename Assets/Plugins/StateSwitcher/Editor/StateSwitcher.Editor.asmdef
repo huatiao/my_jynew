@@ -1,0 +1,16 @@
+{
+    "name": "StateSwitcher.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:1830442db8ffe234c95ef55ee60934a5"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

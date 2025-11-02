@@ -1,0 +1,10 @@
+<module name="">
+    <bean name="LRoleSkill" comment="角色技能信息">
+        <var name="Id" type="int"/>
+        <var name="Level" type="int"/>
+    </bean>
+    <bean name="LRoleItem" comment="角色物品信息">
+        <var name="Id" type="int"/>
+        <var name="Count" type="int"/>
+    </bean>
+</module>

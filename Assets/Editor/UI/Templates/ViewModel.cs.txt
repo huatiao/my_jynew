@@ -1,0 +1,20 @@
+using UnityEngine;
+using Loxodon.Framework.Interactivity;
+using Loxodon.Framework.Observables;
+using VContainer;
+using ProjectBase.Model;
+
+namespace #NAMESPACE#
+{
+    public class #CLASSNAME# : DIViewModelBase
+    {
+        private InteractionRequest _interactDismissed;
+        public InteractionRequest InteractDismissed => _interactDismissed;
+
+        public override void Init()
+        {
+            _interactDismissed = new InteractionRequest();
+        }
+    }
+}
+

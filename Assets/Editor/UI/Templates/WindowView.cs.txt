@@ -1,0 +1,30 @@
+using UnityEngine;
+using UnityEngine.UI;
+using VContainer;
+using Loxodon.Framework.Views;
+using Loxodon.Framework.Binding;
+using Loxodon.Framework.Binding.Builder;
+using Loxodon.Framework.Interactivity;
+using ProjectBase.Define;
+
+namespace #NAMESPACE#
+{
+    [UIInfo(UIID.#UIID#)]
+    public class #CLASSNAME# : DIWindow<#VIEWMODEL#>
+    {
+        protected override void OnViewCreate()
+        {
+            BindingSet<#CLASSNAME#, #VIEWMODEL#> bindingSet = this.CreateBindingSet<#CLASSNAME#, #VIEWMODEL#>();
+            
+            bindingSet.Bind().For(v => v.OnInteractDismissed).To(vm => vm.InteractDismissed);
+
+            bindingSet.Build();
+        }
+
+        private void OnInteractDismissed(object sender, InteractionEventArgs e)
+        {
+            Dismiss();
+        }
+    }
+}
+
