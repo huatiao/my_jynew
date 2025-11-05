@@ -101,21 +101,24 @@ namespace ProjectBase.Service
                 return null;
             }
 
+            IObjectResolver container = _container;
+
             // TODO 反射内容优化成缓存
             // 检查是否是 VMWindow 类型
             Type baseType = window.GetType().BaseType;
-            if (baseType != null && baseType.IsGenericType && baseType.GetGenericTypeDefinition() == typeof(DIWindow<>))
+            if (baseType != null && baseType.IsGenericType && baseType.GetGenericTypeDefinition() == typeof(VMWindow<>))
             {
                 window.gameObject.SetActive(false);
 
-                var uiScope = window.gameObject.AddComponent<ViewScope>();
+                var uiScope = window.gameObject.AddComponent<VMWindowScope>();
                 uiScope.parentReference.Object = _lifetimeScope;
 
-                Type viewModelType = baseType.GetGenericArguments()[0];
-                uiScope.ViewModelType = viewModelType;
+                window.gameObject.SetActive(true);  //触发Awake
 
-                window.gameObject.SetActive(true);
+                container = uiScope.Container;
             }
+
+            container.Inject(window);
 
             window.Create();
             window.Show();

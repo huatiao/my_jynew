@@ -12,6 +12,8 @@ namespace ProjectBase.UI
 {
     public abstract class DIViewModelBase : ObservableObject, IViewModel
     {
+        [Inject] protected IObjectResolver _container;
+
         private IMessenger messenger;
 
         public DIViewModelBase() : this(null)
@@ -23,14 +25,16 @@ namespace ProjectBase.UI
             this.messenger = messenger;
         }
 
-        public virtual void Init() {}
-        public virtual void OnViewCreate() {}  //绑定数据后回调
-
+        public IObjectResolver Container => _container;
         public virtual IMessenger Messenger
         {
             get { return this.messenger; }
             set { this.messenger = value; }
         }
+
+        public virtual void Init() {}
+        public virtual void OnViewCreate() {}  //绑定数据后回调
+        public virtual void Configure(IContainerBuilder builder) {}
 
         protected void Broadcast<T>(T oldValue, T newValue, string propertyName)
         {

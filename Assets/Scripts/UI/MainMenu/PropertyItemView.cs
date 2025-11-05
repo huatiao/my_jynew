@@ -8,17 +8,19 @@ using Loxodon.Framework.Interactivity;
 using ProjectBase.Define;
 using TMPro;
 
-namespace ProjectBase.UI
+namespace ProjectBase.UI.MainMenu
 {
-    public class TMPTextView : VMSubView<TMPTextViewModel>
+    public class PropertyItemView : VMSubView<PropertyItemViewModel>
     {
         [SerializeField] private TextMeshProUGUI _text;
+        [SerializeField] private GameObject _itemBg;
 
         protected override void OnViewCreate()
         {
-            BindingSet<TMPTextView, TMPTextViewModel> bindingSet = this.CreateBindingSet<TMPTextView, TMPTextViewModel>();
+            BindingSet<PropertyItemView, PropertyItemViewModel> bindingSet = this.CreateBindingSet<PropertyItemView, PropertyItemViewModel>();
             
             bindingSet.Bind(_text).For(v => v.text).To(vm => vm.Text);
+            bindingSet.Bind(_itemBg.gameObject).For(v => v.activeSelf).To(vm => vm.ActiveItemBg);
 
             bindingSet.Build();
         }

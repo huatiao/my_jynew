@@ -9,21 +9,18 @@ using VContainer.Unity;
 
 namespace ProjectBase.UI
 {
-    public class UIListViewFactory<T>  where T : DIViewModelBase
+    public class UIListViewBinder<T> : IDisposable where T : DIViewModelBase
     {
-        private IObjectResolver _container;
-        
         private ObservableList<T> _items;
 
         private readonly Transform _content;
 
         private readonly GameObject _itemTemplate;
 
-        public UIListViewFactory(Transform content, GameObject itemTemplate, IObjectResolver container)
+        public UIListViewBinder(Transform content, GameObject itemTemplate)
         {
             _content = content;
             _itemTemplate = itemTemplate;
-            _container = container;
         }
 
         public ObservableList<T> Items
@@ -89,16 +86,15 @@ namespace ProjectBase.UI
             itemViewGo.transform.SetSiblingIndex(index);
             itemViewGo.SetActive(true);
 
-            var itemView = itemViewGo.GetComponent<DISubView<T>>();
-            itemView.SetViewModel(item);
-            _container.Inject(itemView);
+            var itemView = itemViewGo.GetComponent<VMSubView<T>>();
+            itemView.SetViewModel((T)item);
             itemView.Create();
         }
 
         protected virtual void RemoveItem(int index, object item)
         {
             Transform transform = this._content.GetChild(index);
-            var itemView = transform.GetComponent<DISubView<T>>();
+            var itemView = transform.GetComponent<VMSubView<T>>();
             if (itemView.GetDataContext() == item)
             {
                 itemView.gameObject.SetActive(false);
@@ -109,7 +105,7 @@ namespace ProjectBase.UI
         protected virtual void ReplaceItem(int index, object oldItem, object item)
         {
             Transform transform = this._content.GetChild(index);
-            var itemView = transform.GetComponent<DISubView<T>>();
+            var itemView = transform.GetComponent<VMSubView<T>>();
             if (itemView.GetDataContext() == oldItem)
             {
                 itemView.SetDataContext(item);
@@ -119,7 +115,7 @@ namespace ProjectBase.UI
         protected virtual void MoveItem(int oldIndex, int index, object item)
         {
             Transform transform = this._content.GetChild(oldIndex);
-            var itemView = transform.GetComponent<DISubView<T>>();
+            var itemView = transform.GetComponent<VMSubView<T>>();
             itemView.transform.SetSiblingIndex(index);
         }
 
@@ -130,6 +126,12 @@ namespace ProjectBase.UI
                 Transform transform = this._content.GetChild(i);
                 GameObject.Destroy(transform.gameObject);
             }
+        }
+
+        public void Dispose()
+        {
+            if (_items != null)
+                _items.CollectionChanged -= OnCollectionChanged;
         }
     }
 

@@ -11,7 +11,7 @@ using StateSwitcher;
 namespace ProjectBase.UI
 {
     [UIInfo(UIID.MAIN_MENU_WINDOW)]
-    public class MainMenuWindow : DIWindow<MainMenuViewModel>
+    public class MainMenuWindow : VMWindow<MainMenuViewModel>
     {
         [SerializeField] private UIStateSwitcher _uiStateSwitcher;
 
@@ -38,7 +38,7 @@ namespace ProjectBase.UI
             
             bindingSet.Bind().For(v => v.OnInteractDismissed).To(vm => vm.InteractDismissed);
             bindingSet.Bind(_uiStateSwitcher).For(v => v.CurrentState).To(vm => (int)vm.CurrentPage);
-            bindingSet.Bind(_listviewProterty.CreateFactory<TMPTextViewModel>()).For(v => v.Items).To(vm => vm.RandomPropertyItems);
+            bindingSet.Bind(_listviewProterty.CreateBinder<MainMenu.PropertyItemViewModel>()).For(v => v.Items).To(vm => vm.RandomPropertyItems);
 
             // MenuPage
             bindingSet.Bind(_btnStart).For(v => v.onClick).To(vm => vm.OnBtnStart);

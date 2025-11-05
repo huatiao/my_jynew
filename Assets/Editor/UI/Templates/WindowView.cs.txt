@@ -10,7 +10,7 @@ using ProjectBase.Define;
 namespace #NAMESPACE#
 {
     [UIInfo(UIID.#UIID#)]
-    public class #CLASSNAME# : DIWindow<#VIEWMODEL#>
+    public class #CLASSNAME# : VMWindow<#VIEWMODEL#>
     {
         protected override void OnViewCreate()
         {

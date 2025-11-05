@@ -106,5 +106,87 @@ namespace ProjectBase.Model
             PreviousRoundHp = Hp;
             // Tili = GameConst.MAX_ROLE_TILI;
         }
+
+        public void SetProperty(PropertyID id, int value)
+        {
+            switch (id)
+            {
+                case PropertyID.MaxHp or PropertyID.MaxHp_Special:
+                    MaxHp = value;
+                    break;
+                case PropertyID.MaxMp or PropertyID.MaxMp_Special:
+                    MaxMp = value;
+                    break;
+                case PropertyID.Attack or PropertyID.Attack_Special:
+                    Attack = value;
+                    break;
+                case PropertyID.MpType:
+                    MpType = value;
+                    break;
+                case PropertyID.Qinggong:
+                    Qinggong = value;
+                    break;
+                case PropertyID.Defence:
+                    Defence = value;
+                    break;
+                case PropertyID.Heal:
+                    Heal = value;
+                    break;
+                case PropertyID.UsePoison:
+                    UsePoison = value;
+                    break;
+                case PropertyID.DePoison:
+                    DePoison = value;
+                    break;
+                case PropertyID.Quanzhang:
+                    Quanzhang = value;
+                    break;
+                case PropertyID.Yujian:
+                    Yujian = value;
+                    break;
+                case PropertyID.Shuadao:
+                    Shuadao = value;
+                    break;
+                case PropertyID.Anqi:
+                    Anqi = value;
+                    break;
+                case PropertyID.Qimen:
+                    Qimen = value;
+                    break;
+                case PropertyID.Hp:
+                    Hp = value;
+                    break;
+                case PropertyID.Tili:
+                    Tili = value;
+                    break;
+                case PropertyID.Mp:
+                    Mp = value;
+                    break;
+                case PropertyID.AntiPoison:
+                    AntiPoison = value;
+                    break;
+                case PropertyID.Wuxuechangshi:
+                    Wuxuechangshi = value;
+                    break;
+                case PropertyID.Pinde:
+                    Pinde = value;
+                    break;
+                case PropertyID.AttackPoison:
+                    AttackPoison = value;
+                    break;
+                case PropertyID.Zuoyouhubo:
+                    Zuoyouhubo = value;
+                    break;
+                case PropertyID.IQ:
+                    IQ = value;
+                    break;
+                case PropertyID.HpInc:
+                    HpInc = value;
+                    break;
+                case PropertyID.Poison:
+                    Poison = value;
+                    break;
+            }
+        }
     }
 }
